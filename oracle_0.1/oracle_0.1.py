@@ -49,20 +49,37 @@ for god_name, god_image in original_gods_images.items():
 #     pygame.draw.rect(window, black, (button_x, button_y) + (button_width, button_height))
 
 
-    
-
-
 
 def display_random_god():
     # Pick a random god
-    god_name = random.choice(gods)['name']
+    random_god = random.choice(gods)
+    god_name = random_god['name']
     god_image = gods_images[god_name]
-
+    god_description = random_god['description']
+    
     x = 300
     y = 200
 
     # Draw the god
     window.blit(god_image, (x, y))
+
+    # display text for selected god
+    god_name_text = god_name.upper()
+    god_name_font = pygame.font.Font('freesansbold.ttf', 30)
+    god_name_text_surface = god_name_font.render(god_name_text, True, black)
+    god_name_rect = god_name_text_surface.get_rect()
+    god_name_rect.center = (x, y)
+    window.blit(god_name_text_surface, god_name_rect)
+
+    # display matching god's description text and turns it into a paragraph
+    god_description_font = pygame.font.Font('freesansbold.ttf', 20)
+    god_description_text_surface = god_description_font.render(god_description, True, black)
+    god_description_rect = god_description_text_surface.get_rect()
+    god_description_rect.center = (x, y + 50)
+    window.blit(god_description_text_surface, god_description_rect)
+
+    # # paragraph turns text into multiple lines and and justifies text to left, paragraph fits into a rectagle that is not wider than 100px
+
 
     # Update the screen
     pygame.display.update()
