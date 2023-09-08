@@ -7,10 +7,39 @@ import time
 pygame.init()
 
 # Set up the game window
-window_width = 800
-window_height = 600
+window_width = 1200
+window_height = 800
 window = pygame.display.set_mode((window_width, window_height))
 pygame.display.set_caption('ORACLE OF THE UNKNOWN GODS')
+
+#display text heading on screen "ORACLE OF THE UNKNOWN GODS: CHAOS VERSION"
+def draw_heading():
+    font = pygame.font.Font(None, 40)
+    text = font.render('ORACLE OF THE UNKNOWN GODS: CHAOS VERSION', True, (255, 255, 255))
+    text_rect = text.get_rect()
+    text_rect.centerx = window_width // 2
+    text_rect.centery = window_height // 6
+    window.blit(text, text_rect)
+    pygame.display.update()
+
+#draw paragraph text that splits up the string from god_description in multiple line segments no wider than 100px 
+
+random_god = random.choice(gods)
+god_name = random_god['name']
+god_description = random_god['description']
+
+
+# def draw_paragraph():
+#     font = pygame.font.Font(None, 20)
+#     text = font.render(god_description, True, (255, 255, 255))
+#     text_rect = text.get_rect()
+#     text_rect.centerx = window_width // 2
+#     text_rect.centery = window_height // 4
+#     window.blit(text, text_rect)
+#     pygame.display.update()
+
+
+
 
 # #button with image, randomizes the god
 # button_image = pygame.image.load('assets/sphere.png')
@@ -78,7 +107,7 @@ def display_random_god():
     god_description_rect.center = (x, y + 50)
     window.blit(god_description_text_surface, god_description_rect)
 
-    # # paragraph turns text into multiple lines and and justifies text to left, paragraph fits into a rectagle that is not wider than 100px
+    #god_description_text_surface is rendered to the left of the god_image splitting the string into lines no wider than 100 pixels with no max number of lines
 
 
     # Update the screen
@@ -116,6 +145,8 @@ def game_loop():
 
         #display the button
         draw_button()
+        draw_heading()
+        # draw_paragraph()
 
         # Draw your game elements, text, and images here
         pygame.display.update()

@@ -1,6 +1,10 @@
 import pygame
 import sys
 
+
+# this is a list of dictionaries
+
+#how do i retreave an especific item within an object from a list of objects
 gods = [
         {
         "id": 1,
